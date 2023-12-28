@@ -2,37 +2,23 @@ package Crewmate;
 
 public class Crewmate implements CrewmateInterface{
 
-    private final String name;
-    public Crewmate(String name)
-    {
-        this.name = name;
-    }
     @Override
-    public boolean login(String name) {
-        if(name.equals(this.name))
-        {
-            System.out.println("Welcome Crewmate!");
-            return true;
-        }
-        else
-        {
-            System.out.println("You are not a crewmate!");
-            return false;
-        }
+    public void login() {
+        System.out.println("Welcome Crewmate!");
     }
 
     @Override
     public void logout() {
-
+        System.out.println("Bye Bye crewmate.");
     }
 
     @Override
     public void repair() {
-
+        System.out.println("Repairing the spaceship.");
     }
 
     @Override
     public void work() {
-
+        System.out.println("Doing research.");
     }
 }
