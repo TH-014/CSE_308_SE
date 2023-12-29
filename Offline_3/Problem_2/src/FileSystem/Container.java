@@ -41,7 +41,7 @@ public class Container extends BaseComponent{
     }
 
     @Override
-    public void addComponent(BaseComponent component) //incomplete
+    public void addComponent(BaseComponent component)
     {
         if(!childComponents.containsKey(component.getName()))
         {
@@ -56,14 +56,24 @@ public class Container extends BaseComponent{
     @Override
     public void removeComponent(BaseComponent component) //incomplete
     {
-        if(childComponents.containsKey(component.getName()))
+        if(component.getType() == FileType.FILE)
         {
-
             childComponents.remove(component.getName());
         }
         else
         {
-            System.out.println("No such file or directory exists!");
+            if(component.getComponentCount() == 0)
+            {
+                childComponents.remove(component.getName());
+            }
+            else
+            {
+                Container container = (Container) component;
+                for(BaseComponent childComponent : container.childComponents.values())
+                {
+                    removeComponent(childComponent);
+                }
+            }
         }
     }
 

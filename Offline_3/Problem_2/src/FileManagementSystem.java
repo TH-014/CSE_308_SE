@@ -21,7 +21,7 @@ public class FileManagementSystem {
     private String getCurrentTime()
     {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, h:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM, yyyy hh:mm:ss a");
         return now.format(formatter);
     }
 
@@ -68,6 +68,56 @@ public class FileManagementSystem {
                 if (commandParts.length == 1) {
                     currentDirectory.showList();
                 } else {
+                    System.out.println("Invalid command!");
+                }
+                break;
+            case "delete":
+                if (commandParts.length == 2) {
+                    String name = commandParts[1];
+                    BaseComponent component = currentDirectory.getComponent(name);
+                    if (component != null) {
+                        if(component.getType() == FileType.FILE)
+                        {
+                            currentDirectory.removeComponent(component);
+                        }
+                        else if(component.getType() == FileType.DIRECTORY)
+                        {
+                            if(component.getComponentCount() == 0)
+                                currentDirectory.removeComponent(component);
+                            else
+                                System.out.println("Directory is not empty!");
+                        }
+                        else
+                        {
+                            if(component.getComponentCount() == 0)
+                                currentDirectory.removeComponent(component);
+                            else
+                                System.out.println("Drive is not empty!");
+                        }
+                    } else {
+                        System.out.println("No such file or directory exists!");
+                    }
+                }
+                else if(commandParts.length == 3)
+                {
+                    String name = commandParts[2];
+                    String optional = commandParts[1];
+                    if(!optional.equals("-r"))
+                    {
+                        System.out.println("Invalid command!");
+                        break;
+                    }
+                    BaseComponent component = currentDirectory.getComponent(name);
+                    if (component != null) {
+                        if(component.getType() == FileType.FILE)
+                            System.out.println("Warning: You are about to delete a file using '-r' !");
+                        currentDirectory.removeComponent(component);
+                    } else {
+                        System.out.println("No such file or directory exists!");
+                    }
+                }
+                else
+                {
                     System.out.println("Invalid command!");
                 }
                 break;

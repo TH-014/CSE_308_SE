@@ -1,5 +1,7 @@
 package FileSystem;
 
+import java.util.HashMap;
+
 public abstract class BaseComponent {
     private String name;
     private final FileType type;
