@@ -5,7 +5,7 @@ public class Main {
         FileManagementSystem fileManagementSystem = new FileManagementSystem();
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("root@root:"+fileManagementSystem.getCurrentDirectory().getDirectory() + "$ ");
+            System.out.print("root@root:"+fileManagementSystem.getCurrentDirectory().getDirectory() + "\\$ ");
             String command = scanner.nextLine();
             if (command.equals("exit")) {
                 break;

@@ -46,9 +46,9 @@ public abstract class BaseComponent {
         if(parent == null)
             return " ";
         if(parent.getName().equals("root"))
-            return getName()+":\\";
+            return getName()+":";
         else{
-            return parent.getDirectory()+getName()+"\\";
+            return parent.getDirectory()+"\\"+getName();
         }
     }
 
@@ -56,7 +56,7 @@ public abstract class BaseComponent {
         System.out.println("Name: " + name);
         System.out.println("Type: " + type);
         System.out.println("Size: " + getSize()+" kB");
-        System.out.println("Directory: " + getDirectory());
+        System.out.println("Directory: \"" + getDirectory()+"\"");
         System.out.println("Component count: " + getComponentCount());
         System.out.println("Creation time: " + creationTime);
     }

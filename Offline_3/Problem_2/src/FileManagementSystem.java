@@ -104,7 +104,7 @@ public class FileManagementSystem {
                     String optional = commandParts[1];
                     if(!optional.equals("-r"))
                     {
-                        System.out.println("Invalid command!");
+                        System.out.println("Invalid command flag!");
                         break;
                     }
                     BaseComponent component = currentDirectory.getComponent(name);

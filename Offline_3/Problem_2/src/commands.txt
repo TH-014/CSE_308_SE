@@ -1,0 +1,24 @@
+mkdrive C
+mkdrive D
+cd C
+mkdir A
+mkdir B
+cd A
+mkdir AA
+mkdir AB
+mkdir AC
+touch aa.txt 450
+cd AB
+touch ab.asm 500
+cd ..
+cd AA
+touch aaa.cpp 540
+mkdir AAA
+cd AAA
+touch aaaa.txt 600
+touch aaaa.asm 700
+cd ~
+cd C
+list
+ls A
+delete -r A

@@ -1,5 +1,6 @@
 package FileSystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Container extends BaseComponent{
@@ -54,25 +55,30 @@ public class Container extends BaseComponent{
     }
 
     @Override
-    public void removeComponent(BaseComponent component) //incomplete
+    public void removeComponent(BaseComponent component)
     {
         if(component.getType() == FileType.FILE)
         {
+//            System.out.println(component.getName()+" deleted!");
             childComponents.remove(component.getName());
         }
         else
         {
             if(component.getComponentCount() == 0)
             {
+//                System.out.println(component.getName()+" deleted!");
                 childComponents.remove(component.getName());
             }
             else
             {
                 Container container = (Container) component;
-                for(BaseComponent childComponent : container.childComponents.values())
+                var childKeys = new ArrayList<>(container.childComponents.keySet());
+                for(String child : childKeys)
                 {
-                    removeComponent(childComponent);
+                    container.removeComponent(container.getComponent(child));
                 }
+//                System.out.println(component.getName()+" deleted!");
+                childComponents.remove(component.getName());
             }
         }
     }
