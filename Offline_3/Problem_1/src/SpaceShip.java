@@ -1,14 +1,10 @@
-import Adapter.ImposterAdapter;
-import Crewmate.Crewmate;
-import Imposter.Imposter;
-
 import java.util.HashMap;
 
 public class SpaceShip {
     HashMap<String, Crewmate> crewMap;
-    HashMap<String, ImposterAdapter> imposterMap;
+    HashMap<String, Imposter> imposterMap;
     Crewmate curr_crewmate;
-    ImposterAdapter curr_imposter;
+    Imposter curr_imposter;
 
     SpaceShip() {
         crewMap = new HashMap<>();
@@ -37,9 +33,8 @@ public class SpaceShip {
             }
             else if(tokens[1].equalsIgnoreCase("imposter"))
             {
-                Imposter imposter = new Imposter();
-                ImposterAdapter imposterAdapter = new ImposterAdapter(imposter);
-                imposterMap.put(tokens[2].toLowerCase(), imposterAdapter);
+                Imposter imposter = new Imposter(new Crewmate());
+                imposterMap.put(tokens[2].toLowerCase(), imposter);
                 System.out.println("Imposter "+tokens[2].toLowerCase()+" created successfully.");
             }
             else
