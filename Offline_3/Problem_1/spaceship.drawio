@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net" modified="2024-01-03T16:16:18.454Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0" version="22.1.16" etag="e18x7KLMNtTCoKq0_Mtm" type="device">
+  <diagram id="jMCmPuZ6pOffw29oIagR" name="Page-1">
+    <mxGraphModel dx="1450" dy="930" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;BaseInterface&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ login(): void&lt;br/&gt;+ logout(): void&lt;br/&gt;+ repair(): void&lt;br/&gt;+ work(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-99" y="139" width="158" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="node1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Crewmate&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Crewmate(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ logout(): void&lt;br/&gt;+ work(): void&lt;br/&gt;+ login(): void&lt;br/&gt;+ repair(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="114" y="422" width="132" height="193" as="geometry" />
+        </mxCell>
+        <mxCell id="node3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Imposter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Imposter(BaseInterface): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- disguisedCrewmate: BaseInterface&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ login(): void&lt;br/&gt;+ logout(): void&lt;br/&gt;+ repair(): void&lt;br/&gt;+ work(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-280" y="400" width="259" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="node0" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;SpaceShip&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ SpaceShip(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ curr_crewmate: Crewmate&lt;br/&gt;~ crewMap: HashMap&amp;lt;String, Crewmate&amp;gt;&lt;br/&gt;~ curr_imposter: Imposter&lt;br/&gt;~ imposterMap: HashMap&amp;lt;String, Imposter&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ execute(String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-175.5" y="-130" width="311" height="216" as="geometry" />
+        </mxCell>
+        <mxCell id="1dyNig4HzFLv77ZxVOlf-1" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="node3" target="node2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-10" y="200" as="sourcePoint" />
+            <mxPoint x="150" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-150" y="340" />
+              <mxPoint x="-20" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1dyNig4HzFLv77ZxVOlf-2" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="node1" target="node2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-10" y="200" as="sourcePoint" />
+            <mxPoint x="150" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="340" />
+              <mxPoint x="-20" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1dyNig4HzFLv77ZxVOlf-5" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="node2" target="node0">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-10" y="300" as="sourcePoint" />
+            <mxPoint x="150" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1dyNig4HzFLv77ZxVOlf-6" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;entryX=1.004;entryY=0.558;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="node1" target="node3">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-10" y="420" as="sourcePoint" />
+            <mxPoint x="150" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
