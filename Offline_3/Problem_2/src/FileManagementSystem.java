@@ -46,11 +46,16 @@ public class FileManagementSystem {
                         currentDirectory = root;
                         break;
                     }
+                    boolean isDrive = false;
+                    if (name.endsWith(":\\")) {
+                        name = name.substring(0, name.length() - 2);
+                        isDrive = true;
+                    }
                     BaseComponent component = currentDirectory.getComponent(name);
-                    if (component != null && (component.getType() == FileType.DIRECTORY || component.getType() == FileType.DRIVE)) {
+                    if (component != null && ((component.getType() == FileType.DIRECTORY && !isDrive) || component.getType() == FileType.DRIVE)) {
                         currentDirectory = component;
                     } else {
-                        System.out.println("No such directory exists!");
+                        System.out.println("No such drive or directory exists!");
                     }
                 } else {
                     System.out.println("Invalid command!");
