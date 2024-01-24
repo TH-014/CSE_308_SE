@@ -38,6 +38,10 @@ public class Container extends BaseComponent{
         for(BaseComponent component : childComponents.values())
         {
             System.out.println(component.getName()+"\t\t"+component.getSize()+" kB"+"\t\t"+component.getCreationTime());
+//            if(component.getType() == FileType.DIRECTORY || component.getType() == FileType.DRIVE)
+//            {
+//                component.showList();
+//            }
         }
     }
 
