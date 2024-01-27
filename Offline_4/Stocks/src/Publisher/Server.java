@@ -15,7 +15,8 @@ public class Server implements Runnable{
     final HashMap<String, Vector<String>> pendingNotifications;
 
     private static final String INPUT_FILE_NAME = "init_stocks.txt";
-    private static final String SAVED_DATA = "pending_notifications.txt";
+    private static final String SAVED_NOTIFICATIONS = "pending_notifications.txt";
+    private static final String SAVED_SUBSCRIBER_LIST = "subscribers.txt";
 
     Server() throws IOException {
         stockList = new HashMap<>();
@@ -140,27 +141,50 @@ public class Server implements Runnable{
         }
     }
 
-    public void readFiles() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE_NAME));
-        while (true) {
-            String line = br.readLine();
-            if (line == null) break;
-            Stock st = new Stock(line);
-            stockList.put(st.getName(), st);
+    public void readFiles() {
+        BufferedReader br;
+        try{
+            br = new BufferedReader(new FileReader(INPUT_FILE_NAME));
+            while (true) {
+                String line = br.readLine();
+                if (line == null) break;
+                Stock st = new Stock(line);
+                stockList.put(st.getName(), st);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println(INPUT_FILE_NAME + " file not found");
         }
-        br.close();
-        br = new BufferedReader(new FileReader(SAVED_DATA));
-        while (true) {
-            String line = br.readLine();
-            if (line == null) break;
-            String[] tokens = line.split("__");
-            String clientName = tokens[0];
-            String notification = tokens[1];
-            if (!pendingNotifications.containsKey(clientName))
-                pendingNotifications.put(clientName, new Vector<>());
-            pendingNotifications.get(clientName).add(notification);
+        try{
+            br = new BufferedReader(new FileReader(SAVED_SUBSCRIBER_LIST));
+            while (true) {
+                String line = br.readLine();
+                if (line == null) break;
+                String[] tokens = line.split("__");
+                String clientName = tokens[0];
+                String stockName = tokens[1];
+                subscribe(clientName, stockName);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println(SAVED_SUBSCRIBER_LIST + " file not found");
         }
-        br.close();
+        try{
+            br = new BufferedReader(new FileReader(SAVED_NOTIFICATIONS));
+            while (true) {
+                String line = br.readLine();
+                if (line == null) break;
+                String[] tokens = line.split("__");
+                String clientName = tokens[0];
+                String notification = tokens[1];
+                if (!pendingNotifications.containsKey(clientName))
+                    pendingNotifications.put(clientName, new Vector<>());
+                pendingNotifications.get(clientName).add(notification);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println(SAVED_NOTIFICATIONS + " file not found");
+        }
     }
 
     public void writeFiles() throws IOException {
@@ -172,7 +196,7 @@ public class Server implements Runnable{
             bw.write(System.lineSeparator());
         }
         bw.close();
-        BufferedWriter crw = new BufferedWriter(new FileWriter(SAVED_DATA));
+        BufferedWriter crw = new BufferedWriter(new FileWriter(SAVED_NOTIFICATIONS));
         for(var client: pendingNotifications.keySet())
         {
             for(var notification: pendingNotifications.get(client))
@@ -183,6 +207,18 @@ public class Server implements Runnable{
             }
         }
         crw.close();
+        BufferedWriter srw = new BufferedWriter(new FileWriter(SAVED_SUBSCRIBER_LIST));
+        for(var stock: stockList.values())
+        {
+            var list = stock.getSubscriberList();
+            for(var client: list)
+            {
+                String str = stock.getName()+"__"+client;
+                srw.write(str);
+                srw.write(System.lineSeparator());
+            }
+        }
+        srw.close();
     }
     public static void main(String[] args) throws IOException {
         System.out.println("Server Started...");

@@ -4,10 +4,10 @@ import util.Data;
 import util.SocketWrapper;
 
 public class WriteThreadServer implements Runnable{
-    private Server server;
+    private final Server server;
     private Thread thr;
-    private SocketWrapper socketWrapper;
-    private String clientName;
+    private final SocketWrapper socketWrapper;
+    private final String clientName;
 
 
     public WriteThreadServer(Server server, SocketWrapper socketWrapper, String clientName) {
@@ -29,6 +29,11 @@ public class WriteThreadServer implements Runnable{
                 server.pendingNotifications.get(clientName).clear();
                 data.setSubscribedStocks(server.getSubscribedStocks(clientName));
                 socketWrapper.write(data);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         catch (Exception e)
