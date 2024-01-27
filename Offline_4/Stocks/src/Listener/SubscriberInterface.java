@@ -1,5 +1,7 @@
 package Listener;
 
+import java.util.Vector;
+
 public interface SubscriberInterface {
-    public void update(String message);
+    public void update(Vector<String> message);
 }

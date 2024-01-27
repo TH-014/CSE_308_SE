@@ -51,13 +51,13 @@ public class Stock {
         this.price = price;
     }
 
-    public void addSubscriber(String subscriberName)
+    public void subscribe(String subscriberName)
     {
         if(!subscriberList.contains(subscriberName))
             subscriberList.add(subscriberName);
     }
 
-    public void removeSubscriber(String subscriberName)
+    public void unsubscribe(String subscriberName)
     {
         subscriberList.remove(subscriberName);
     }

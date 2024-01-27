@@ -8,7 +8,7 @@ import java.util.Vector;
 
 public class Data implements Serializable {
     private String clientName;
-    private HashMap<String, Stock> stockList;
+    private Vector<String> stockList;
     private Vector<String> notificationList;
     private Vector<String> subscribedStocks;
 
@@ -32,12 +32,16 @@ public class Data implements Serializable {
         this.clientName = clientName;
     }
 
-    public HashMap<String, Stock> getStockList() {
+    public Vector<String> getStockList() {
         return stockList;
     }
 
-    public void setStockList(HashMap<String, Stock> stockList) {
-        this.stockList = stockList;
+    public void setStockList(HashMap<String, Stock> stockMap) {
+        stockList = new Vector<>();
+        for(String stockName: stockMap.keySet())
+        {
+            stockList.add(stockName+" "+stockMap.get(stockName).getCount()+" "+stockMap.get(stockName).getPrice());
+        }
     }
 
     public Vector<String> getNotificationList() {
@@ -45,6 +49,7 @@ public class Data implements Serializable {
     }
 
     public void setNotificationList(Vector<String> notificationList) {
-        this.notificationList = notificationList;
+        this.notificationList = new Vector<>();
+        this.notificationList.addAll(notificationList);
     }
 }

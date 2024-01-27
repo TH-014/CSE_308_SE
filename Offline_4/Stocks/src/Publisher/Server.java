@@ -45,14 +45,14 @@ public class Server implements Runnable{
     {
         if(!stockList.containsKey(stockName))
             return;
-        stockList.get(stockName).addSubscriber(clientName);
+        stockList.get(stockName).subscribe(clientName);
     }
 
     public void unsubscribe(String clientName, String stockName)
     {
         if(!stockList.containsKey(stockName))
             return;
-        stockList.get(stockName).removeSubscriber(clientName);
+        stockList.get(stockName).unsubscribe(clientName);
     }
 
     public Vector<String> getSubscribedStocks(String clientName)
@@ -100,6 +100,7 @@ public class Server implements Runnable{
 
     public void increasePrice(String stockName, double price)
     {
+        System.out.println("Price increased");
         if(!stockList.containsKey(stockName))
             return;
         stockList.get(stockName).setPrice(stockList.get(stockName).getPrice()+price);

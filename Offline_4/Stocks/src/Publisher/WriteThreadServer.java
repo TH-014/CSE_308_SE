@@ -3,6 +3,8 @@ package Publisher;
 import util.Data;
 import util.SocketWrapper;
 
+import java.util.Vector;
+
 public class WriteThreadServer implements Runnable{
     private final Server server;
     private Thread thr;
@@ -20,14 +22,23 @@ public class WriteThreadServer implements Runnable{
     @Override
     public void run() {
         try{
+            System.out.println("Sending data to "+clientName);
             while(true)
             {
                 Data data = new Data(clientName);
                 //get info from server
                 data.setStockList(server.stockList);
-                data.setNotificationList(server.pendingNotifications.get(clientName));
-                server.pendingNotifications.get(clientName).clear();
-                data.setSubscribedStocks(server.getSubscribedStocks(clientName));
+                if(server.pendingNotifications.containsKey(clientName)) {
+//                    System.out.println(clientName+" has pending notifications");
+                    data.setNotificationList(server.pendingNotifications.get(clientName));
+                    server.pendingNotifications.get(clientName).clear();
+                }
+                else
+                    data.setNotificationList(new Vector<>());
+                if(server.stockList.containsKey(clientName))
+                    data.setSubscribedStocks(server.getSubscribedStocks(clientName));
+                else
+                    data.setSubscribedStocks(new Vector<>());
                 socketWrapper.write(data);
                 try {
                     Thread.sleep(500);
