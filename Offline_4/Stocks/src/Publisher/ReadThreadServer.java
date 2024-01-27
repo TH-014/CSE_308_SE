@@ -40,7 +40,8 @@ public class ReadThreadServer implements Runnable {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+//            System.out.println(e);
+            System.out.println("Client name: " + clientName+" is disconnected");
         }
     }
 }

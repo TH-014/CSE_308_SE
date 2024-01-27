@@ -43,11 +43,11 @@ public class Client implements Runnable{
 
     void printSubscribedStocks()
     {
-        System.out.println("Subscribed Stocks: "+ subscribed.size());
+        System.out.println("Subscribed Stocks: "+ subscribedStocks.size());
         for(String stock: stockList)
         {
             String [] tokens = stock.split(" ");
-            if(subscribed.contains(tokens[0]))
+            if(subscribedStocks.contains(tokens[0]))
                 System.out.println(stock);
         }
     }

@@ -153,6 +153,7 @@ public class Server implements Runnable{
                 stockList.put(st.getName(), st);
             }
             br.close();
+            System.out.println("Stocks loaded");
         } catch (IOException e) {
             System.out.println(INPUT_FILE_NAME + " file not found");
         }
@@ -161,12 +162,13 @@ public class Server implements Runnable{
             while (true) {
                 String line = br.readLine();
                 if (line == null) break;
-                String[] tokens = line.split("__");
-                String clientName = tokens[0];
-                String stockName = tokens[1];
+                String[] tokens = line.split("_");
+                String clientName = tokens[1];
+                String stockName = tokens[0];
                 subscribe(clientName, stockName);
             }
             br.close();
+            System.out.println("Subscriber List loaded");
         } catch (IOException e) {
             System.out.println(SAVED_SUBSCRIBER_LIST + " file not found");
         }
@@ -175,7 +177,7 @@ public class Server implements Runnable{
             while (true) {
                 String line = br.readLine();
                 if (line == null) break;
-                String[] tokens = line.split("__");
+                String[] tokens = line.split("_");
                 String clientName = tokens[0];
                 String notification = tokens[1];
                 if (!pendingNotifications.containsKey(clientName))
@@ -183,6 +185,7 @@ public class Server implements Runnable{
                 pendingNotifications.get(clientName).add(notification);
             }
             br.close();
+            System.out.println("Pending Notifications loaded");
         } catch (IOException e) {
             System.out.println(SAVED_NOTIFICATIONS + " file not found");
         }
@@ -202,7 +205,7 @@ public class Server implements Runnable{
         {
             for(var notification: pendingNotifications.get(client))
             {
-                String str = client+"__"+notification;
+                String str = client+"_"+notification;
                 crw.write(str);
                 crw.write(System.lineSeparator());
             }
@@ -214,7 +217,7 @@ public class Server implements Runnable{
             var list = stock.getSubscriberList();
             for(var client: list)
             {
-                String str = stock.getName()+"__"+client;
+                String str = stock.getName()+"_"+client;
                 srw.write(str);
                 srw.write(System.lineSeparator());
             }

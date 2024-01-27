@@ -35,10 +35,10 @@ public class WriteThreadServer implements Runnable{
                 }
                 else
                     data.setNotificationList(new Vector<>());
-                if(server.stockList.containsKey(clientName))
+//                if(server.stockList.containsKey(clientName))
                     data.setSubscribedStocks(server.getSubscribedStocks(clientName));
-                else
-                    data.setSubscribedStocks(new Vector<>());
+//                else
+//                    data.setSubscribedStocks(new Vector<>());
                 socketWrapper.write(data);
                 try {
                     Thread.sleep(500);
@@ -49,7 +49,7 @@ public class WriteThreadServer implements Runnable{
         }
         catch (Exception e)
         {
-            System.out.println(e);
+//            System.out.println(e);
         }
 
     }
